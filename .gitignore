@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+*.py[cod]
+household_power_consumption.txt
+data/cleaned_household_power_consumption.csv.gz
+data/selected_observations.csv
+data/dataset_summary.json
+models/*
+outputs/*
+!outputs/.gitkeep
+reports/*
