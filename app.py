@@ -26,7 +26,7 @@ html, body, [class*="css"] { font-family:'DM Sans',sans-serif; }
 .stApp { background:var(--paper); color:var(--ink); }
 [data-testid="stSidebar"] { background:#fff; border-right:1px solid var(--line); }
 [data-testid="stSidebar"] > div { padding-top:1.5rem; }
-.block-container { max-width:1440px; padding-top:2rem; padding-bottom:3rem; }
+.block-container { max-width:1440px; padding-top:4rem; padding-bottom:3rem; }
 h1,h2,h3 { font-family:'Manrope',sans-serif; color:var(--ink); letter-spacing:-.035em; }
 h1 { font-size:2.2rem !important; }
 [data-testid="stMetric"] { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 20px; box-shadow:0 5px 18px rgba(28,55,90,.035); }
@@ -224,3 +224,4 @@ else:
         st.markdown("<div class='panel'><p>Forecasts are estimates for coursework and exploration. They depend on complete, correctly ordered input readings and are not a substitute for a calibrated utility meter.</p><hr><p><b>Target</b><br><span class='small-muted'>Global active power, measured in kilowatts</span></p><p><b>Evaluation design</b><br><span class='small-muted'>Chronological train, validation, and test partitions</span></p></div>", unsafe_allow_html=True)
     st.subheader("Project artifacts")
     st.write("The dashboard reads prepared data from `data/`, model files from `models/`, and evaluation outputs from `outputs/`. To reproduce results, follow the setup steps in the repository README.")
+
