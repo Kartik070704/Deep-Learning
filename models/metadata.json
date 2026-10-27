@@ -1,0 +1,29 @@
+{
+  "seed": 42,
+  "features": [
+    "Global_reactive_power_lag_1",
+    "Voltage_lag_1",
+    "Global_intensity_lag_1",
+    "Sub_metering_1_lag_1",
+    "Sub_metering_2_lag_1",
+    "Sub_metering_3_lag_1",
+    "Global_active_power_lag_1",
+    "Global_active_power_lag_30",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos"
+  ],
+  "target": "Global_active_power",
+  "selected_rows": 50000,
+  "supervised_rows": 49962,
+  "train_rows": 34973,
+  "validation_rows": 7494,
+  "test_rows": 7495,
+  "split": "chronological 70/15/15",
+  "prediction_horizon": "one minute; exact prior timestamps at 1 and 30 minutes",
+  "output_form": "previous active power plus ANN-predicted residual",
+  "validation_residual_scale": 0.9007628498230288,
+  "epochs_ran": 33,
+  "best_epoch": 21
+}
