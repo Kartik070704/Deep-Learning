@@ -2,6 +2,10 @@
 
 EnergySense is a CSM422 Deep Learning CA1 project that estimates household `Global_active_power` one minute ahead using a feedforward TensorFlow/Keras MLP. It uses the supplied real dataset, preserves time order, compares against a persistence baseline, and provides a light-themed Streamlit analytics dashboard.
 
+## Project report
+
+The student-authored 25-page submission report is available here: [EnergySense_Report.pdf](EnergySense_Report.pdf).
+
 ## Project structure
 
 ```text
@@ -13,13 +17,13 @@ src/energy_sense.py       Shared loading and time-safe feature engineering
 data/README.md            Local data artifact notes
 models/                   Saved model, scaler, and metadata (after training)
 outputs/                  Predictions, metrics, and plots (after evaluation)
-reports/                  Generated academic report (after evaluation)
+EnergySense_Report.pdf    Student-authored project report for evaluation
 tests/                    Basic data and prediction checks
 ```
 
 ## Submission contents
 
-The repository includes the trained model and scaler, model metadata, selected 50,000-row dataset, dataset summary, evaluation metrics and plots, test predictions, training history, and generated report. The original 132 MB source TXT is excluded; keep the supplied file in the project root if you need to rerun preprocessing from scratch. The selected dataset is included so training and evaluation can be rerun without that large source file.
+The repository includes the trained model and scaler, model metadata, selected 50,000-row dataset, dataset summary, evaluation metrics and plots, test predictions, training history, and the student-authored [project report](EnergySense_Report.pdf). The original 132 MB source TXT is excluded; keep the supplied file in the project root if you need to rerun preprocessing from scratch. The selected dataset is included so training and evaluation can be rerun without that large source file.
 
 ## Dataset
 
@@ -57,7 +61,7 @@ Upload the project and the supplied TXT dataset, then run:
 !python -m unittest discover -s tests -v
 ```
 
-Download `models/`, `outputs/`, and `reports/project_report.md` before the Colab runtime ends.
+Download `models/` and `outputs/` before the Colab runtime ends. The project report is tracked in the repository root as `EnergySense_Report.pdf`.
 
 ## Streamlit Community Cloud
 
@@ -67,4 +71,4 @@ The project includes a light Streamlit theme in `.streamlit/config.toml`. To pub
 
 Architecture: 12 inputs → Dense(64, ReLU) → Dense(32, ReLU) → Dense(1, linear residual). The ANN estimates a correction added to the previous exact-minute active-power value, allowing a direct comparison with the persistence baseline. Compile with Adam, MSE loss, and MAE metric. Early stopping restores best validation weights. The evaluation script computes MAE, RMSE, and R² from actual held-out predictions, saves four plots, and writes the report with measured results.
 
-The included held-out results are mixed: the ANN has lower RMSE and higher R² than persistence, but persistence has lower MAE. The report presents both results so the model is not described as better on every metric. See [the generated project report](reports/project_report.md) and [evaluation metrics](outputs/evaluation_metrics.json).
+The included held-out results are mixed: the ANN has lower RMSE and higher R² than persistence, but persistence has lower MAE. The report presents both results so the model is not described as better on every metric. See the [project report](EnergySense_Report.pdf) and [evaluation metrics](outputs/evaluation_metrics.json).
