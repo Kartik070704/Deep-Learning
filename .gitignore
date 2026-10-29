@@ -10,4 +10,7 @@ data/dataset_summary.json
 models/*
 outputs/*
 !outputs/.gitkeep
+!outputs/test_predictions.csv
+!outputs/training_history.csv
 reports/*
+!reports/project_report.md

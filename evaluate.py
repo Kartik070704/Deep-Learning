@@ -70,6 +70,8 @@ The split is chronological: 70% training, 15% validation, and 15% test. Training
 
 Test predictions: {result['test_rows']:,}. ANN lower MAE: **{result['ANN_lower_MAE']}**. ANN lower RMSE: **{result['ANN_lower_RMSE']}**. These are measured values on the held-out test interval.
 
+The comparison is mixed: the persistence baseline has lower MAE, while the ANN has lower RMSE and higher R². The results do not support claiming that the ANN is better on every metric.
+
 ## Diagnostic plots
 ![Actual versus predicted](../outputs/actual_vs_predicted.png)
 ![Training and validation loss](../outputs/training_validation_loss.png)
@@ -79,7 +81,7 @@ Test predictions: {result['test_rows']:,}. ANN lower MAE: **{result['ANN_lower_M
 The scatter plot compares test estimates with observed targets; loss curves show training/validation behavior; residuals show signed errors; and the sample series illustrates the model over a chronological test segment. The baseline metrics determine comparative value; plots alone do not establish performance.
 
 ## Limitations, future work, and conclusion
-The experiment uses an early chronological segment of a much longer dataset, so results apply to that interval. Exact-time lag matching reduces usable rows where readings are missing. Future work can evaluate more temporal cut points, tune regularization, and add transparent baselines. Performance should be judged from the reported held-out metrics; no generalization beyond this experiment is implied.
+The experiment uses an early chronological segment of a much longer dataset, so results apply to that interval. Exact-time lag matching reduces usable rows where readings are missing. In this test interval, the ANN improves RMSE and R² but does not improve MAE over persistence. Future work can evaluate more temporal cut points, tune regularization, and add transparent baselines. No generalization beyond this experiment is implied.
 
 ## References
 1. Hebrail, G. and Berard, A. (2006). *Individual Household Electric Power Consumption*. UCI Machine Learning Repository.

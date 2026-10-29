@@ -17,6 +17,10 @@ reports/                  Generated academic report (after evaluation)
 tests/                    Basic data and prediction checks
 ```
 
+## Submission contents
+
+The repository includes the trained model and scaler, model metadata, selected 50,000-row dataset, dataset summary, evaluation metrics and plots, test predictions, training history, and generated report. The original 132 MB source TXT is excluded; keep the supplied file in the project root if you need to rerun preprocessing from scratch. The selected dataset is included so training and evaluation can be rerun without that large source file.
+
 ## Dataset
 
 Keep the provided `household_power_consumption.txt` in the project root. It is read directly with Pandas, is never modified, and is excluded from Git. Preprocessing writes `data/selected_observations.csv` with exactly nine original columns and up to the first 50,000 complete rows in chronological order. It also creates a compressed full-cleaned export and an inspection summary. No synthetic or duplicated observations are generated.
@@ -37,6 +41,8 @@ python -m unittest discover -s tests -v
 streamlit run app.py
 ```
 
+The included results were generated from the supplied dataset and are available without rerunning training. The commands above reproduce them locally; `preprocess.py` needs the original TXT file, while `train_model.py` and `evaluate.py` can use the included `data/selected_observations.csv`.
+
 The model uses the six non-target electrical readings exactly one minute earlier, active-power readings exactly one and 30 minutes earlier, and cyclic time features known at prediction time. Target rows without those exact earlier timestamps are removed. The first 70% of usable rows train, the next 15% validate, and the final 15% test. No random shuffle is used; scaling is fitted on training data only.
 
 ## Google Colab
@@ -55,8 +61,10 @@ Download `models/`, `outputs/`, and `reports/project_report.md` before the Colab
 
 ## Streamlit Community Cloud
 
-The project includes a light Streamlit theme in `.streamlit/config.toml`. To publish, push the source files to a GitHub repository you control, then create a Streamlit Community Cloud app with entrypoint `app.py`. Do not commit the original raw file or local measurement exports. The dashboard explains missing model or evaluation artifacts; provide the trained model and scaler through a secure deployment artifact path if the prediction page should be live. Keep dataset-derived metrics and report artifacts out of a public repository unless you decide to share them.
+The project includes a light Streamlit theme in `.streamlit/config.toml`. To publish, push the source files to a GitHub repository you control, then create a Streamlit Community Cloud app with entrypoint `app.py`. The original raw file and full cleaned export are excluded; the selected sample and coursework evaluation artifacts are included for this submission. Before making the repository public, decide whether you want to publish those dataset-derived artifacts. The dashboard uses the included model, metrics, plots, and selected sample when they are present.
 
 ## Model and metrics
 
 Architecture: 12 inputs → Dense(64, ReLU) → Dense(32, ReLU) → Dense(1, linear residual). The ANN estimates a correction added to the previous exact-minute active-power value, allowing a direct comparison with the persistence baseline. Compile with Adam, MSE loss, and MAE metric. Early stopping restores best validation weights. The evaluation script computes MAE, RMSE, and R² from actual held-out predictions, saves four plots, and writes the report with measured results.
+
+The included held-out results are mixed: the ANN has lower RMSE and higher R² than persistence, but persistence has lower MAE. The report presents both results so the model is not described as better on every metric. See [the generated project report](reports/project_report.md) and [evaluation metrics](outputs/evaluation_metrics.json).
